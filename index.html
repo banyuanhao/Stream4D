@@ -3,518 +3,168 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <!-- Primary Meta Tags -->
-  <!-- TODO: Replace with your paper title and author names -->
-  <meta name="title" content="PAPER_TITLE - AUTHOR_NAMES">
-  <!-- TODO: Write a compelling 150-160 character description of your research -->
-  <meta name="description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Add 5-10 relevant keywords for your research area -->
-  <meta name="keywords" content="KEYWORD1, KEYWORD2, KEYWORD3, machine learning, computer vision, AI">
-  <!-- TODO: List all authors -->
-  <meta name="author" content="FIRST_AUTHOR_NAME, SECOND_AUTHOR_NAME">
+  <title>Stream4D | 4D-Consistency Reinforcement Learning for Streaming Video</title>
+  <meta name="title" content="Stream4D: 4D-Consistency Reinforcement Learning for Streaming Autoregressive Video Models">
+  <meta name="description" content="Stream4D trains streaming autoregressive video models with 4D reconstruction, motion, and perceptual rewards to preserve coherent motion over long rollouts.">
+  <meta name="keywords" content="Stream4D, video generation, autoregressive video, reinforcement learning, 4D consistency, Gaussian Splatting, world models">
+  <meta name="author" content="Anonymous authors">
   <meta name="robots" content="index, follow">
-  <meta name="language" content="English">
-  
-  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="article">
-  <!-- TODO: Replace with your institution or lab name -->
-  <meta property="og:site_name" content="INSTITUTION_OR_LAB_NAME">
-  <!-- TODO: Same as paper title above -->
-  <meta property="og:title" content="PAPER_TITLE">
-  <!-- TODO: Same as description above -->
-  <meta property="og:description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Replace with your actual website URL -->
-  <meta property="og:url" content="https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE">
-  <!-- TODO: Create a 1200x630px preview image and update path -->
-  <meta property="og:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="PAPER_TITLE - Research Preview">
-  <meta property="article:published_time" content="2024-01-01T00:00:00.000Z">
-  <meta property="article:author" content="FIRST_AUTHOR_NAME">
-  <meta property="article:section" content="Research">
-  <meta property="article:tag" content="KEYWORD1">
-  <meta property="article:tag" content="KEYWORD2">
-
-  <!-- Twitter -->
+  <meta property="og:site_name" content="Stream4D">
+  <meta property="og:title" content="Stream4D: 4D-Consistency Reinforcement Learning for Streaming Video">
+  <meta property="og:description" content="A 4D-consistency RL recipe that keeps streaming autoregressive video models moving while improving geometric coherence.">
+  <meta property="og:image" content="static/images/social_preview.png">
   <meta name="twitter:card" content="summary_large_image">
-  <!-- TODO: Replace with your lab/institution Twitter handle -->
-  <meta name="twitter:site" content="@YOUR_TWITTER_HANDLE">
-  <!-- TODO: Replace with first author's Twitter handle -->
-  <meta name="twitter:creator" content="@AUTHOR_TWITTER_HANDLE">
-  <!-- TODO: Same as paper title above -->
-  <meta name="twitter:title" content="PAPER_TITLE">
-  <!-- TODO: Same as description above -->
-  <meta name="twitter:description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Same as social preview image above -->
-  <meta name="twitter:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
-  <meta name="twitter:image:alt" content="PAPER_TITLE - Research Preview">
-
-  <!-- Academic/Research Specific -->
-  <meta name="citation_title" content="PAPER_TITLE">
-  <meta name="citation_author" content="FIRST_AUTHOR_LAST, FIRST_AUTHOR_FIRST">
-  <meta name="citation_author" content="SECOND_AUTHOR_LAST, SECOND_AUTHOR_FIRST">
-  <meta name="citation_publication_date" content="2024">
-  <meta name="citation_conference_title" content="CONFERENCE_NAME">
-  <meta name="citation_pdf_url" content="https://YOUR_DOMAIN.com/static/pdfs/paper.pdf">
-  
-  <!-- Additional SEO -->
-  <meta name="theme-color" content="#2563eb">
-  <meta name="msapplication-TileColor" content="#2563eb">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  
-  <!-- Preconnect for performance -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://ajax.googleapis.com">
-  <link rel="preconnect" href="https://documentcloud.adobe.com">
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
-
-
-  <!-- TODO: Replace with your paper title and authors -->
-  <title>PAPER_TITLE - AUTHOR_NAMES | Academic Research</title>
-  
-  <!-- Favicon and App Icons -->
+  <meta name="twitter:title" content="Stream4D">
+  <meta name="twitter:description" content="4D-consistency reinforcement learning for streaming autoregressive video models.">
+  <meta name="twitter:image" content="static/images/social_preview.png">
   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
-  <link rel="apple-touch-icon" href="static/images/favicon.ico">
-  
-  <!-- Critical CSS - Load synchronously -->
-  <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/index.css">
-  
-  <!-- Non-critical CSS - Load asynchronously -->
-  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  
-  <!-- Fallback for browsers that don't support preload -->
-  <noscript>
-    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
-    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
-    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  </noscript>
-  
-  <!-- Fonts - Optimized loading -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- Defer non-critical JavaScript -->
-  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
-  <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script defer src="static/js/bulma-carousel.min.js"></script>
-  <script defer src="static/js/bulma-slider.min.js"></script>
-  <script defer src="static/js/index.js"></script>
-  
-  <!-- Structured Data for Academic Papers -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ScholarlyArticle",
-    "headline": "PAPER_TITLE",
-    "description": "BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS",
-    "author": [
-      {
-        "@type": "Person",
-        "name": "FIRST_AUTHOR_NAME",
-        "affiliation": {
-          "@type": "Organization",
-          "name": "INSTITUTION_NAME"
-        }
-      },
-      {
-        "@type": "Person",
-        "name": "SECOND_AUTHOR_NAME",
-        "affiliation": {
-          "@type": "Organization",
-          "name": "INSTITUTION_NAME"
-        }
-      }
-    ],
-    "datePublished": "2024-01-01",
-    "publisher": {
-      "@type": "Organization",
-      "name": "CONFERENCE_OR_JOURNAL_NAME"
-    },
-    "url": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE",
-    "image": "https://YOUR_DOMAIN.com/static/images/social_preview.png",
-    "keywords": ["KEYWORD1", "KEYWORD2", "KEYWORD3", "machine learning", "computer vision"],
-    "abstract": "FULL_ABSTRACT_TEXT_HERE",
-    "citation": "BIBTEX_CITATION_HERE",
-    "isAccessibleForFree": true,
-    "license": "https://creativecommons.org/licenses/by/4.0/",
-    "mainEntity": {
-      "@type": "WebPage",
-      "@id": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE"
-    },
-    "about": [
-      {
-        "@type": "Thing",
-        "name": "RESEARCH_AREA_1"
-      },
-      {
-        "@type": "Thing", 
-        "name": "RESEARCH_AREA_2"
-      }
-    ]
-  }
-  </script>
-  
-  <!-- Website/Organization Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "INSTITUTION_OR_LAB_NAME",
-    "url": "https://YOUR_INSTITUTION_WEBSITE.com",
-    "logo": "https://YOUR_DOMAIN.com/static/images/favicon.ico",
-    "sameAs": [
-      "https://twitter.com/YOUR_TWITTER_HANDLE",
-      "https://github.com/YOUR_GITHUB_USERNAME"
-    ]
-  }
-  </script>
+  <style>
+    :root{
+      --ink:#101318;--muted:#58606b;--line:#e7eaf0;--soft:#f6f8fb;
+      --blue:#1769e0;--green:#0b8f65;--red:#ca342c;--amber:#b76a00;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:white;line-height:1.55}
+    a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
+    .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+    header.hero{padding:56px 0 28px;background:linear-gradient(180deg,#f7fbff 0%,#fff 88%);border-bottom:1px solid var(--line)}
+    .eyebrow{font-weight:700;color:var(--blue);letter-spacing:.08em;text-transform:uppercase;font-size:13px;margin-bottom:10px}
+    h1{font-size:48px;line-height:1.06;margin:0 auto 14px;letter-spacing:-.035em;max-width:980px;text-align:center}
+    h2{font-size:28px;line-height:1.2;margin:0 0 16px;letter-spacing:-.02em}
+    h3{font-size:18px;margin:0 0 8px}
+    .subtitle{font-size:20px;color:var(--muted);max-width:900px;margin:0 auto 22px;text-align:center}
+    .authors{color:#333;text-align:center;margin:10px 0 22px}.authors span{font-weight:600}
+    .buttons{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:22px 0}
+    .btn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);padding:10px 15px;border-radius:999px;background:#fff;color:var(--ink);font-weight:650;box-shadow:0 1px 2px rgba(16,19,24,.05)}
+    .btn.primary{background:var(--ink);color:#fff;border-color:var(--ink)}
+    section{padding:42px 0;border-bottom:1px solid var(--line)}
+    .teaser{width:100%;border-radius:14px;box-shadow:0 14px 40px rgba(16,19,24,.12);background:#fff}
+    .caption{font-size:14px;color:var(--muted);max-width:980px;margin:12px auto 0;text-align:center}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:var(--soft);border:1px solid var(--line);border-radius:16px;padding:18px}.card strong{display:block;font-size:17px;margin-bottom:5px}.card p{margin:0;color:var(--muted)}
+    .results{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}.results th,.results td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:center}.results th{background:#f1f5fb;font-size:14px}.results td:first-child,.results th:first-child{text-align:left}.results tr:last-child td{border-bottom:0}.hi{font-weight:800;color:var(--green)}
+    .examples{display:flex;flex-direction:column;gap:28px}.example{border:1px solid var(--line);border-radius:18px;background:#fff;overflow:hidden;box-shadow:0 8px 24px rgba(16,19,24,.06)}.example-head{padding:14px 16px;background:#f7f9fc;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;align-items:center}.example-title{font-weight:800}.tag{font-size:12px;border:1px solid #bde5d5;background:#eaf8f2;color:var(--green);border-radius:999px;padding:4px 8px;font-weight:700}.video-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#dfe4ec}.vidcell{background:#fff;padding:8px}.vidcell video{width:100%;border-radius:10px;background:#000;display:block}.vidlab{text-align:center;font-weight:800;margin-top:6px;font-size:14px}.vidlab.ours{color:var(--red)}
+    .method-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:start}.bullets{margin:0;padding-left:20px}.bullets li{margin:8px 0}.callout{border-left:4px solid var(--blue);background:#f4f8ff;padding:14px 16px;border-radius:10px;color:#23324a}
+    pre{background:#0f172a;color:#e2e8f0;border-radius:14px;padding:16px;overflow:auto;font-size:13px}
+    footer{padding:30px 0;color:var(--muted);text-align:center}
+    @media (max-width:900px){h1{font-size:36px}.subtitle{font-size:17px}.grid,.method-grid,.video-row{grid-template-columns:1fr}.wrap{padding:0 16px}}
+  </style>
 </head>
 <body>
-
-
-  <!-- Scroll to Top Button -->
-  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
-    <i class="fas fa-chevron-up"></i>
-  </button>
-
-  <!-- More Works Dropdown -->
-  <div class="more-works-container">
-    <button class="more-works-btn" onclick="toggleMoreWorks()" title="View More Works from Our Lab">
-      <i class="fas fa-flask"></i>
-      More Works
-      <i class="fas fa-chevron-down dropdown-arrow"></i>
-    </button>
-    <div class="more-works-dropdown" id="moreWorksDropdown">
-      <div class="dropdown-header">
-        <h4>More Works from Our Lab</h4>
-        <button class="close-btn" onclick="toggleMoreWorks()">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      <div class="works-list">
-        <!-- TODO: Replace with your lab's related works -->
-        <a href="https://arxiv.org/abs/PAPER_ID_1" class="work-item" target="_blank">
-          <div class="work-info">
-            <!-- TODO: Replace with actual paper title -->
-            <h5>Paper Title 1</h5>
-            <!-- TODO: Replace with brief description -->
-            <p>Brief description of the work and its main contribution.</p>
-            <!-- TODO: Replace with venue and year -->
-            <span class="work-venue">Conference/Journal 2024</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-        <!-- TODO: Add more related works or remove extra items -->
-        <a href="https://arxiv.org/abs/PAPER_ID_2" class="work-item" target="_blank">
-          <div class="work-info">
-            <h5>Paper Title 2</h5>
-            <p>Brief description of the work and its main contribution.</p>
-            <span class="work-venue">Conference/Journal 2023</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-        <a href="https://arxiv.org/abs/PAPER_ID_3" class="work-item" target="_blank">
-          <div class="work-info">
-            <h5>Paper Title 3</h5>
-            <p>Brief description of the work and its main contribution.</p>
-            <span class="work-venue">Conference/Journal 2023</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-      </div>
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow" style="text-align:center">Streaming autoregressive video generation</div>
+    <h1>Stream4D: 4D-Consistency Reinforcement Learning for Streaming Autoregressive Video Models</h1>
+    <p class="subtitle">A lightweight RL recipe that rewards coherent <em>moving</em> worlds rather than frozen, rigid scenes.</p>
+    <p class="authors"><span>Anonymous authors</span> &nbsp;·&nbsp; Under review</p>
+    <div class="buttons">
+      <a class="btn primary" href="#examples">View videos</a>
+      <a class="btn" href="#method">Method</a>
+      <a class="btn" href="#results">Results</a>
+      <a class="btn" href="https://github.com/banyuanhao/Stream4D">Code / project repo</a>
     </div>
   </div>
+</header>
 
-  <main id="main-content">
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <!-- TODO: Replace with your paper title -->
-            <h1 class="title is-1 publication-title">Academic Project Page</h1>
-            <div class="is-size-5 publication-authors">
-              <!-- TODO: Replace with your paper authors and their personal links -->
-              <span class="author-block">
-                <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">First Author</a><sup>*</sup>,</span>
-                <span class="author-block">
-                  <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Second Author</a><sup>*</sup>,</span>
-                  <span class="author-block">
-                    <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Third Author</a>
-                  </span>
-                  </div>
+<main>
+<section>
+  <div class="wrap">
+    <img class="teaser" src="static/images/teaser.png" alt="Stream4D teaser comparing Base, World-R1, VideoGPA, and Stream4D over time">
+    <p class="caption"><strong>Static-3D rewards freeze the scene; Stream4D keeps it moving.</strong> The base moves but drifts; World-R1 and VideoGPA lock the subject in place; Stream4D preserves motion while keeping the scene coherent.</p>
+  </div>
+</section>
 
-                  <div class="is-size-5 publication-authors">
-                    <!-- TODO: Replace with your institution and conference/journal info -->
-                    <span class="author-block">Institution Name<br>Conference name and year</span>
-                    <!-- TODO: Remove this line if no equal contribution -->
-                    <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span>
-                  </div>
-
-                  <div class="column has-text-centered">
-                    <div class="publication-links">
-                         <!-- TODO: Update with your arXiv paper ID -->
-                      <span class="link-block">
-                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
-                        class="external-link button is-normal is-rounded is-dark">
-                        <span class="icon">
-                          <i class="fas fa-file-pdf"></i>
-                        </span>
-                        <span>Paper</span>
-                      </a>
-                    </span>
-
-                    <!-- TODO: Add your supplementary material PDF or remove this section -->
-                    <span class="link-block">
-                      <a href="static/pdfs/supplementary_material.pdf" target="_blank"
-                      class="external-link button is-normal is-rounded is-dark">
-                      <span class="icon">
-                        <i class="fas fa-file-pdf"></i>
-                      </span>
-                      <span>Supplementary</span>
-                    </a>
-                  </span>
-
-                  <!-- TODO: Replace with your GitHub repository URL -->
-                  <span class="link-block">
-                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fab fa-github"></i>
-                    </span>
-                    <span>Code</span>
-                  </a>
-                </span>
-
-                <!-- TODO: Update with your arXiv paper ID -->
-                <span class="link-block">
-                  <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
-                  class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
+<section id="abstract">
+  <div class="wrap method-grid">
+    <div>
+      <h2>Abstract</h2>
+      <p>Streaming autoregressive diffusion models generate videos chunk by chunk, enabling real-time generation over long horizons. However, local frame objectives do not sufficiently constrain the geometry and dynamics of a coherent world. Existing static-3D reconstruction rewards can make this worse: a single rigid reconstruction cannot model dynamic objects, so motion is treated as reconstruction error and the policy can earn reward by freezing the scene.</p>
+      <p><strong>Stream4D</strong> replaces the rigid critic with a feed-forward 4D Gaussian-Splatting reconstructor and adds a target-centered motion prior plus a lightweight perceptual anchor. The result is a transferable reward that improves 4D consistency while preserving natural motion across multiple streaming AR backbones.</p>
+    </div>
+    <div class="callout">
+      <strong>Key idea.</strong> Reward dynamic scenes with a dynamic 4D representation. Then add a peaked motion gate so the policy cannot win by freezing or by producing jittery, incoherent motion.
     </div>
   </div>
 </section>
 
-
-<!-- Teaser video-->
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <!-- TODO: Replace with your teaser video -->
-      <video poster="" id="tree" autoplay controls muted loop height="100%" preload="metadata">
-        <!-- TODO: Add your video file path here -->
-        <source src="static/videos/banner_video.mp4" type="video/mp4">
-      </video>
-      <!-- TODO: Replace with your video description -->
-      <h2 class="subtitle has-text-centered">
-        Aliquam vitae elit ullamcorper tellus egestas pellentesque. Ut lacus tellus, maximus vel lectus at, placerat pretium mi. Maecenas dignissim tincidunt vestibulum. Sed consequat hendrerit nisl ut maximus. 
-      </h2>
+<section id="method">
+  <div class="wrap">
+    <h2>How Stream4D works</h2>
+    <div class="grid">
+      <div class="card"><strong>4D reconstruction consistency</strong><p>MoVieS reconstructs the rollout as a dynamic 4D Gaussian scene and re-renders it at estimated cameras. High reward means the video can be explained as a coherent evolving scene.</p></div>
+      <div class="card"><strong>Natural-motion prior</strong><p>A peaked Gaussian target on scene-flow magnitude encourages enough motion, but not runaway blur. Smoothness and rigidity terms penalize jitter and spatially erratic flow.</p></div>
+      <div class="card"><strong>Perceptual anchor</strong><p>HPSv2 stabilizes appearance so the policy does not trade visual quality for geometry and motion reward. The three axes are z-normalized and summed.</p></div>
     </div>
   </div>
 </section>
-<!-- End teaser video -->
 
-<!-- Paper abstract -->
-<section class="section hero is-light">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <!-- TODO: Replace with your paper abstract -->
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ullamcorper tellus sed ante aliquam tempus. Etiam porttitor urna feugiat nibh elementum, et tempor dolor mattis. Donec accumsan enim augue, a vulputate nisi sodales sit amet. Proin bibendum ex eget mauris cursus euismod nec et nibh. Maecenas ac gravida ante, nec cursus dui. Vivamus purus nibh, placerat ac purus eget, sagittis vestibulum metus. Sed vestibulum bibendum lectus gravida commodo. Pellentesque auctor leo vitae sagittis suscipit.
-          </p>
+<section id="results">
+  <div class="wrap">
+    <h2>Highlights</h2>
+    <table class="results">
+      <thead><tr><th>Backbone</th><th>4D-PSNR gain</th><th>Gemini Consistency win%</th><th>VideoReward Overall win%</th></tr></thead>
+      <tbody>
+        <tr><td>Self-Forcing</td><td class="hi">+3.46 dB</td><td>82.2%</td><td>66.2%</td></tr>
+        <tr><td>Causal-Forcing</td><td class="hi">+5.53 dB</td><td>73.9%</td><td>76.0%</td></tr>
+        <tr><td>LongLive</td><td class="hi">+6.76 dB</td><td>74.2%</td><td>84.4%</td></tr>
+      </tbody>
+    </table>
+    <p class="caption">Compared with each backbone's distilled base on the 500-prompt motion-prominent held-out set. A LongLive human study further confirms that people prefer Stream4D over both static-3D reward baselines.</p>
+  </div>
+</section>
+
+<section id="examples">
+  <div class="wrap">
+    <h2>Video examples</h2>
+    <p class="caption" style="margin-top:-8px;margin-bottom:22px">Selected LongLive prompts (hm=28, 274, 402) where Stream4D wins in the human study. Videos loop automatically.</p>
+    <div class="examples">
+      <article class="example">
+        <div class="example-head"><span class="example-title">hm=28 · dinosaur-faced alien in the street</span><span class="tag">human-study winner</span></div>
+        <div class="video-row">
+          <div class="vidcell"><video src="static/videos/examples/hm028_base.mp4" autoplay muted loop playsinline controls></video><div class="vidlab">Base</div></div>
+          <div class="vidcell"><video src="static/videos/examples/hm028_worldr1.mp4" autoplay muted loop playsinline controls></video><div class="vidlab">World-R1</div></div>
+          <div class="vidcell"><video src="static/videos/examples/hm028_videogpa.mp4" autoplay muted loop playsinline controls></video><div class="vidlab">VideoGPA</div></div>
+          <div class="vidcell"><video src="static/videos/examples/hm028_stream4d.mp4" autoplay muted loop playsinline controls></video><div class="vidlab ours">Stream4D</div></div>
         </div>
-      </div>
+      </article>
+      <article class="example">
+        <div class="example-head"><span class="example-title">hm=274 · fish-faced alien walking down a futuristic street</span><span class="tag">human-study winner</span></div>
+        <div class="video-row">
+          <div class="vidcell"><video src="static/videos/examples/hm274_base.mp4" autoplay muted loop playsinline controls></video><div class="vidlab">Base</div></div>
+          <div class="vidcell"><video src="static/videos/examples/hm274_worldr1.mp4" autoplay muted loop playsinline controls></video><div class="vidlab">World-R1</div></div>
+          <div class="vidcell"><video src="static/videos/examples/hm274_videogpa.mp4" autoplay muted loop playsinline controls></video><div class="vidlab">VideoGPA</div></div>
+          <div class="vidcell"><video src="static/videos/examples/hm274_stream4d.mp4" autoplay muted loop playsinline controls></video><div class="vidlab ours">Stream4D</div></div>
+        </div>
+      </article>
+      <article class="example">
+        <div class="example-head"><span class="example-title">hm=402 · alien mutant mammoth in an alien city</span><span class="tag">teaser example</span></div>
+        <div class="video-row">
+          <div class="vidcell"><video src="static/videos/examples/hm402_base.mp4" autoplay muted loop playsinline controls></video><div class="vidlab">Base</div></div>
+          <div class="vidcell"><video src="static/videos/examples/hm402_worldr1.mp4" autoplay muted loop playsinline controls></video><div class="vidlab">World-R1</div></div>
+          <div class="vidcell"><video src="static/videos/examples/hm402_videogpa.mp4" autoplay muted loop playsinline controls></video><div class="vidlab">VideoGPA</div></div>
+          <div class="vidcell"><video src="static/videos/examples/hm402_stream4d.mp4" autoplay muted loop playsinline controls></video><div class="vidlab ours">Stream4D</div></div>
+        </div>
+      </article>
     </div>
   </div>
 </section>
-<!-- End paper abstract -->
 
-
-<!-- Image carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-       <div class="item">
-        <!-- TODO: Replace with your research result images -->
-        <img src="static/images/carousel1.jpg" alt="First research result visualization" loading="lazy"/>
-        <!-- TODO: Replace with description of this result -->
-        <h2 class="subtitle has-text-centered">
-          First image description.
-        </h2>
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel2.jpg" alt="Second research result visualization" loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-          Second image description.
-        </h2>
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel3.jpg" alt="Third research result visualization" loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-         Third image description.
-       </h2>
-     </div>
-     <div class="item">
-      <!-- Your image here -->
-      <img src="static/images/carousel4.jpg" alt="Fourth research result visualization" loading="lazy"/>
-      <h2 class="subtitle has-text-centered">
-        Fourth image description.
-      </h2>
-    </div>
-  </div>
-</div>
-</div>
-</section>
-<!-- End image carousel -->
-
-
-
-
-<!-- Youtube video -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <!-- Paper video. -->
-      <h2 class="title is-3">Video Presentation</h2>
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          
-          <div class="publication-video">
-            <!-- TODO: Replace with your YouTube video ID -->
-            <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-          </div>
-        </div>
-      </div>
-    </div>
+<section id="citation">
+  <div class="wrap">
+    <h2>Citation</h2>
+    <p class="caption" style="text-align:left;margin-left:0">BibTeX will be updated after review.</p>
+    <pre>@article{stream4d2026,
+  title   = {Stream4D: 4D-Consistency Reinforcement Learning for Streaming Autoregressive Video Models},
+  author  = {Anonymous Authors},
+  journal = {Under review},
+  year    = {2026}
+}</pre>
   </div>
 </section>
-<!-- End youtube video -->
+</main>
 
-
-<!-- Video carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title is-3">Another Carousel</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-video1">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video1" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel1.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video2">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video2" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel2.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video3">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video3" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel3.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End video carousel -->
-
-
-
-
-
-
-<!-- Paper poster -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title">Poster</h2>
-
-      <!-- TODO: Replace with your poster PDF -->
-      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">
-          </iframe>
-        
-      </div>
-    </div>
-  </section>
-<!--End paper poster -->
-
-
-
-<!--BibTex citation -->
-  <section class="section" id="BibTeX">
-    <div class="container is-max-desktop content">
-      <div class="bibtex-header">
-        <h2 class="title">BibTeX</h2>
-        <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
-          <i class="fas fa-copy"></i>
-          <span class="copy-text">Copy</span>
-        </button>
-      </div>
-      <pre id="bibtex-code"><code>@article{YourPaperKey2024,
-  title={Your Paper Title Here},
-  author={First Author and Second Author and Third Author},
-  journal={Conference/Journal Name},
-  year={2024},
-  url={https://your-domain.com/your-project-page}
-}</code></pre>
-    </div>
-</section>
-<!--End BibTex citation -->
-
-
-  <footer class="footer">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-
-          <p>
-            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
-            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-
-        </div>
-      </div>
-    </div>
-  </div>
+<footer>
+  <div class="wrap">Built for the Stream4D project. This page uses local assets and works with GitHub Pages.</div>
 </footer>
-
-<!-- Statcounter tracking code -->
-  
-<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
-
-    <!-- End of Statcounter Code -->
-
-  </body>
-  </html>
+</body>
+</html>
